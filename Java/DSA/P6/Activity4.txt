@@ -1,0 +1,271 @@
+Matthew Loe
+Student ID: 19452425
+Date Created: 22/9/2018
+Date Last Modified: 23/9/2018
+
+Diagram 1
+
+----- Depth -----
+
+Stack: 
+New = {A,B,C,D,E,F,G}
+Old = {}
+T = {}
+
+Stack: A
+L[A] = B,C,D,E 
+New = {B,C,D,E,F,G}
+Old = {A}
+T = {}
+
+Stack: A,B
+L[B] = A,E 
+New = {C,D,E,F,G}
+Old = {A,B}
+T = {(A,B)}
+
+Stack: A,B,E
+L[E] = B,F,G
+New = {C,D,F,G}
+Old = {A,B,E}
+T = {(A,B),(B,E)}
+
+Stack: A,B,E,F
+L[F] = D,E,G
+New = {C,D,G}
+Old = {A,B,E,F}
+T = {(A,B),(B,E),(E,F)}
+
+Stack: A,B,E,F,D
+L[D] = A,C,F
+New = {C,G}
+Old = {A,B,E,F,D}
+T = {(A,B),(B,E),(E,F),(F,D)}
+
+Stack: A,B,E,F,D,C
+L[C] = A,D
+New = {G}
+Old = {A,B,E,F,D,C}
+T = {(A,B),(B,E),(E,F),(F,D),(D,C)}
+
+Stack: A,B,E,F,D
+L[D] = E,F
+New = {G}
+Old = {A,B,E,F,D,C}
+T = {(A,B),(B,E),(E,F),(F,D),(D,C)}
+
+Stack: A,B,E,F
+L[F] = D,E,G
+New = {G}
+Old = {A,B,E,F,D,C}
+T = {(A,B),(B,E),(E,F),(F,D),(D,C)}
+
+Stack: A,B,E,F,G
+L[G] = E,F
+New = {}
+Old = {A,B,E,F,D,C,G}
+T = {(A,B),(B,E),(E,F),(F,D),(D,C),(F,G)}
+
+----- Breadth -----
+
+Queue:
+New = {A,B,C,D,E,F,G}
+Old = {}
+T = {}
+
+Queue: A
+L[A] = {B,C,D,E}
+New = {B,C,D,E,F,G}
+Old = {A}
+T = {}
+
+Queue: B,C,D,E
+L[B] = {A,E}
+New = {F,G}
+Old = {A,B,C,D,E}
+T = {{A,B),(A,C),(A,D),(A,E)}
+
+Queue: C,D,E
+L[C] = {A,D}
+New = {F,G}
+Old = {A,B,C,D,E}
+T = {(A,B),(A,C),(A,D),(A,E)}
+
+Queue: D,E,F
+L[D] = {A,C,F}
+New = {F,G}
+Old = {A,B,C,D,E}
+T = {(A,B),(A,C),(A,D),(A,E),(D,F)}
+
+Queue: E,F
+L[E] = {A,B,F,G}
+New = {G}
+Old = {A,B,C,D,E,F}
+T = {(A,B),(A,C),(A,D),(A,E),(D,F),(E,G)}
+
+Queue: F,G
+L[F] = {D,E,G}
+New = {}
+Old = {A,B,C,D,E,F,G}
+T = {(A,B),(A,C),(A,D),(A,E),(D,F),(E,G)}
+
+Queue: G
+L[G] = {E,F}
+New = {}
+Old = {A,B,C,D,E,F,G}
+T = {(A,B),(A,C),(A,D),(A,E),(D,F),(E,G)}
+
+Queue:
+New = {}
+Old = {A,B,C,D,E,F,G}
+T = {(A,B),(A,C),(A,D),(A,E),(D,F),(E,G)}
+
+--------------------------------------------------------------------
+Diagram 2
+
+----- Depth -----
+
+Stack:
+New = {A,B,C,D,E,F,G,H,I,J}
+Old = {}
+T = {}
+
+Stack: A
+L[A] = B,C,D
+New = {B,C,D,E,F,G,H,I,J}
+Old = {A}
+T = {}
+
+Stack: A,B
+L[B] = A,E
+New = {C,D,E,F,G,H,I,J}
+Old = {A,B}
+T = {(A,B)}
+
+Stack: A,B,E
+L[E] = B,D,G
+New = {C,D,F,G,H,I,J}
+Old = {A,B,E}
+T = {(A,B),(B,E)}
+
+Stack: A,B,E,D
+L[D] = A,E,F
+New = {C,F,G,H,I,J}
+Old = {A,B,E,D}
+T = {(A,B),(B,E),(E,D)}
+
+Stack: A,B,E,D,F
+L[F] = C,D,I
+New = {C,G,H,I,J}
+Old = {A,B,E,D,F}
+T = {(A,B),(B,E),(E,D),(D,F)}
+
+Stack: A,B,E,D,F,C
+L[C] = A,F
+New = {G,H,I,J}
+Old = {A,B,E,D,F,C}
+T = {(A,B),(B,E),(E,D),(D,F),(F,C)}
+
+Stack: A,B,E,D,F
+L[F] = C,D,I
+New = {G,H,I,J}
+Old = {A,B,E,D,F,C}
+T = {(A,B),(B,E),(E,D),(D,F),(F,C)}
+
+Stack: A,B,E,D,F,I
+L[I] = F,H,J
+New = {G,H,J}
+Old = {A,B,E,D,F,C,I}
+T = {(A,B),(B,E),(E,D),(D,F),(F,C),(F,I)}
+
+Stack: A,B,E,D,F,I,H
+L[H] = D,G,I,J
+New = {G,J}
+Old = {A,B,E,D,F,C,I,H}
+T = {(A,B),(B,E),(E,D),(D,F),(F,C),(F,I),(I,H)}
+
+Stack: A,B,E,D,F,I,H,G
+L[G] = E,H,J
+New = {J}
+Old = {A,B,E,D,F,C,I,H,G}
+T = {(A,B),(B,E),(E,D),(D,F),(F,C),(F,I),(I,H),(H,G)}
+
+Stack: A,B,E,D,F,I,H,G,J
+L[J] = G,H,I
+New = {}
+Old = {A,B,E,D,F,C,I,H,G,J}
+T = {(A,B),(B,E),(E,D),(D,F),(F,C),(F,I),(I,H),(H,G),(G,J)}
+
+----- Breadth -----
+
+Queue:
+New = {A,B,C,D,E,F,G,H,I,J}
+Old = {}
+T = {}
+
+Queue: A
+L[A] = {B,C.D} 
+New = {E,F,G,H,I,J}
+Old = {A}
+T = {}
+
+Queue: B,C,D
+L[B] = {A,E} 
+New = {F,G,H,I,J}
+Old = {A,B}
+T = {(A,B),(A,C),(A,D),(B,E)}
+
+Queue: C,D,E
+L[C] = {A,F} 
+New = {G,H,I,J}
+Old = {A,B,C}
+T = {(A,B),(A,C),(A,D),(B,E),(C,F)}
+
+Queue: D,E,F
+L[D] = {A,E,F,H} 
+New = {G,I,J}
+Old = {A,B,C,D}
+T = {(A,B),(A,C),(A,D),(B,E),(C,F),(D,H)}
+
+Queue: E,F,H
+L[E] = {E,D,G} 
+New = {I,J}
+Old = {A,B,C,D,E}
+T = {(A,B),(A,C),(A,D),(B,E),(C,F),(D,H),(E,G)}
+
+Queue: F,H,G
+L[F] = {C,D,I} 
+New = {J}
+Old = {A,B,C,D,E,F}
+T = {(A,B),(A,C),(A,D),(B,E),(C,F),(D,H),(E,G),(F,I)}
+
+Queue: H,G,I
+L[H] = {D,G,I,J} 
+New = {}
+Old = {A,B,C,D,E,F,H}
+T = {(A,B),(A,C),(A,D),(B,E),(C,F),(D,H),(E,G),(F,I),(H,J)}
+
+Queue: G,I,J
+L[G] = {E,H,J} 
+New = {}
+Old = {A,B,C,D,E,F,H,G}
+T = {(A,B),(A,C),(A,D),(B,E),(C,F),(D,H),(E,G),(F,I),(H,J)}
+
+Queue: I,J
+L[I] = {F,H,J} 
+New = {}
+Old = {A,B,C,D,E,F,H,G,I}
+T = {(A,B),(A,C),(A,D),(B,E),(C,F),(D,H),(E,G),(F,I),(H,J)}
+
+Queue: J
+L[J] = {G,H,I} 
+New = {}
+Old = {A,B,C,D,E,F,H,G}
+T = {(A,B),(A,C),(A,D),(B,E),(C,F),(D,H),(E,G),(F,I),(H,J)}
+
+Queue: 
+New = {}
+Old = {A,B,C,D,E,F,H,G}
+T = {(A,B),(A,C),(A,D),(B,E),(C,F),(D,H),(E,G),(F,I),(H,J)}
+
+

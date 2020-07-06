@@ -1,0 +1,53 @@
+Matthew Loe
+Student ID:19452425
+
+Program: ShapeCalculator.java
+Design Date: 22/03/2018
+Test Date: 28/3/2018
+
+Total Tests: 10
+Tests Passed:9
+Tests Failed:1
+
+Note: M = menu choice (you may adjust the menu choice test data based on your own design choice)
+            1 = circle
+            2 = rectangle
+            3 = triangle
+            4 = exit
+      D = circle diameter
+      L,W = Rectangle Length, Width
+      B, H = Triangle Base, Height
+
+TEST RESULTS:
+ID: Category:           Test Data:                      Expected Behaviour:                     Actual Behaviour:              Pass(P)/Fail(F)
+________________________________________________________________________________________________________________________________________________
+1   Valid               M = 1                           "Circle prompt text"                   0m^2, 7542cm^2, 96.39mm^2              P 
+                            D = 98                          0m^2, 7542cm^2, 96.39mm^2     
+2   Valid               M = 2                           "Rectangle prompt text"                  21m^2, 86cm^2, 46mm^2                P 
+                            L = 1138.68, W = 184.50         21m^2, 86cm^2, 46mm^2  
+3   Valid               M = 3                           "Triangle prompt text"                  8m^2, 3259cm^2, 5.7mm^2               P       
+                            B = 6493.2, H = 2564.5          8m^2, 3259cm^2, 5.7mm^2                                                              
+4   Valid               M = 4                           "Exit message" AND                     Exit message and return                P        
+                                                        return to terminal prompt                to terminal                                                
+________________________________________________________________________________________________________________________________________________
+5   Integer Division    M = 1                           "Circle prompt text"
+                            D = 115                         1m^2, 386cm^2, 89.07mm^2            1m^2, 386cm^2, 89.07mm^2              P   
+________________________________________________________________________________________________________________________________________________
+6   Invalid Menu        M = 8                           "Error Message" AND                     Error message and                                          
+                                                        return to terminal prompt               return to terminal                    P
+________________________________________________________________________________________________________________________________________________
+7   Invalid Type        M = 'a'                         "Error: please enter an integer" AND
+                                                        "Exit Message" AND                        Uses default option of circle       F
+                                                        return to terminal prompt
+8   Invalid Type        M = 1                           "Circle prompt text"                                                                
+                            D="test"                        "Error, input must be an integer"      Uses default value of 115          P
+                                                            "Using default 115"
+                                                            1m^2, 386cm^2, 89.07mm^2
+________________________________________________________________________________________________________________________________________________
+9   negative values    M = 1
+                            D = -242                         4m^2, 5996cm^2, 5.8mm^2             4m^2, 5996cm^2, 5.8mm^2              P   
+10  negative values    M = 2
+                            L = 1139.68, W = 0               0m^2, 0cm^2, 0mm^2                 0m^2, 0cm^2, 0mm^2                    P                              
+________________________________________________________________________________________________________________________________________________
+
+

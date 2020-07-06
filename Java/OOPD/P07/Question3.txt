@@ -1,0 +1,60 @@
+Matthew Loe
+Student ID:19452425
+Date Created:19/4/2018
+Date Last Modified:19/4/2018
+
+Main
+
+   numTerms =: inputInt <-- prompt, min, max
+   index =: 0
+   DO
+      array[index] =: calcTerm <-- index
+      index =: index + 1
+   WHILE index <= numTerms
+   END DO-WHILE
+   array[array.length-1] =: calcFinalValue <-- array
+   FOR count = 0 TO array.length - 1 CHANGEBY 1
+      IF count == (array.length - 1)
+         OUTPUT("The final value is "+array[count])
+      ELSE
+         OUTPUT("The "+(count)+"th term is "+array[count])
+      END IF 
+   END FOR 
+
+END Main
+
+Sub Module inputInt
+I:prompt(String), min(Integer), max(Integer)
+E:num(Integer)
+Assertion:Gets input of integer datatype
+Algorithm:
+   error = ""
+   num = min - 1
+   DO
+      TRY
+         OUTPUT(error)
+         OUTPUT(prompt)
+         INPUT(num)
+         error = "Invalid input, outside of range ("+min+"-"+max+")."
+      CATCH
+         Clear Input
+         error = "Invalid input, wrong datatype."
+   WHILE num < min OR num > max
+
+Sub Module calcTerm
+I:index(Integer)
+E:num(Real)
+Assertion:Calculates the value of the term
+Algorithm:
+    num = (-1)Power(index)
+    num = (Convert to Real)(num DIV (((2 * index) + 1) * (3)Power(index)))
+
+Sub Module calcFinalValue
+I:array(Array of Real)
+E:num(Real)
+Assertion:Calculates the final value of Pi
+Algorithm:
+   FOR index = 0 TO index < array.length CHANGEBY 1
+      num = num + array[index]
+   num = num * Sqrt(12)
+

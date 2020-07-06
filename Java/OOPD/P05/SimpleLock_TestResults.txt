@@ -1,0 +1,19 @@
+Matthew Loe
+Student ID: 19452425
+Date Created: 2/4/2018
+Date Last Modified: 2/4/2018
+
+Program: SimpleLock.java
+Test Date: 2/4/2018
+
+Total Tests: 2
+Tests Passed: 2
+Tests Failed: 0
+
+Test Results
+
+ID:    Category:      Test Data:      Expected Behaviour:        Actual Behaviour:        Pass(P)/Fail(F)
+__________________________________________________________________________________________________________
+1        Valid            f               Alohomora                Alohomora                    P
+
+2        Valid            m               Alohomora                Alohomora                    P

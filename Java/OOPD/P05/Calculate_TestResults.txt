@@ -1,0 +1,45 @@
+Matthew Loe
+Student ID:19452425
+
+Program: ShapeCalculator.java
+Design Date: 28/03/2018
+Test Date: 30/3/2018
+
+Total Tests:7
+Tests Passed:6
+Tests Failed:1
+
+Note: Menu = measurement unit choice
+            C = Centimetres
+            M = Metres
+      L = Length
+      W = Width
+
+Test Results:
+ID:  Category:            Test Data:              Expected Result:             Actual Result:            Pass(P)/Fail(F)
+_____________________________________________________________________________________________________________________________
+1    Valid                 L = 12
+                           W = 25                    300cm^2                     300cm^2                      P
+                              Menu = C
+2    Valid                 L = 101
+                           W = 49                    4949m^2                     4949m^2                      P
+                              Menu = M              
+_____________________________________________________________________________________________________________________________
+3    Invalid Menu          L = 1
+                           W = 1                     "Error"               "Entered wrong letter"             P
+                              Menu = G                                         and exits
+_____________________________________________________________________________________________________________________________
+4    Invalid Type          L = 1                      
+                           W = 1                     "Error"                   "Invalid option.
+                              Menu = 1             Using default option       Using default option."          P
+
+5    Invalid Type          L = 'a'                  "Error"                     "Invalid Input.               P
+                                                 Using default value          Using default value."
+_____________________________________________________________________________________________________________________________
+6    Negative Values       L = -101               
+                           W = 1                    "Error"                       -101cm^2                    F
+                              Menu = C         Uses default option/exits
+
+7    Negative Values       L = 0                    0cm^2                          0cm^2                      P
+                           W = 141
+                              Menu = C

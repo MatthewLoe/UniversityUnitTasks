@@ -1,0 +1,28 @@
+Matthew Loe
+Student ID:19452425
+Date Created:19/4/2018
+Date Last Modified:19/4/2018
+
+Sub Module questionTwo
+I: mark (Integer)
+E: grade (String)
+Assertion: Calculates the grade of person from their mark
+Algorithm:
+   IF mark > 100 OR mark < 0 THEN
+      OUTPUT("Invalid Input")
+   ELSE
+      newMark =: mark DIV 10
+      CASE newMark OF
+         case 10: case 9: case 8:
+            grade =: "High Distinction"
+         case 7:   
+            grade =: "Distinction"
+         case 6:  
+            grade =: "Credit"
+         case 5:  
+            grade =: "Pass"
+         Default:   
+            grade =: "Fail"
+      END CASE
+   END IF
+      

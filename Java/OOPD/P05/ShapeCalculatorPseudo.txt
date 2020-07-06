@@ -1,0 +1,144 @@
+Matthew Loe
+Student ID: 19452425
+Date Created: 8/3/2018
+Date Last Modified: 29/3/2018
+
+Description
+Calculates area of shapes
+
+Main
+
+   DO
+      value <-- runShapeCalculator <-- None
+   WHILE NOT(value == 0)  
+
+END Main
+
+SUB MODULE runShapeCaclculator
+IMPORT: None
+EXPORT: value (Integer)
+Assertion: Runs the program shapecalculator
+Algorithm:
+   selected <-- chooseShape <-- None
+   value := 1
+   CASE selected
+      1:
+         circleCalc <-- none
+      2:
+         rectangleCalc <-- none
+      3:
+         triangleCalc <-- none
+      4:
+         value := 0
+         OUTPUT("Exiting program.")
+      DEFAULT:
+         OUTPUT("Invalid option.")
+      END CASE
+
+SUB MODULE chooseShape
+IMPORT: None
+EXPORT: selected(Int)
+Assertion: Asks user to select a shape
+Algorithm:
+   TRY 
+      OUTPUT("Available options Circle(1), Rectangle(2), Triangle(3) and Exit(4).")
+      OUTPUT("Please enter the corresponding integer for your chosen option.")
+      INPUT(selected)
+   CATCH(InputMismatchException e)
+      Clear Input
+      OUTPUT("Input must be integer. Using default option of 1 (Circle)")
+      selected := 1
+   END TRY
+
+SUB MODULE calcAreaCircle
+IMPORT: diameter(Integer)
+EXPORT: area(Real)
+Assertion:Calculate area of circle
+Algorithm:
+   radius :=(Convert to Real)(diameter)/2
+   area := pi * (radius POW 2)
+
+SUB MODULE calcAreaRectangle
+IMPORT: width(Real), length(Real)
+EXPORT: area(Real)
+Assertion:Calculate area of rectangle
+Algorithm:
+   area := width * length
+
+SUB MODULE calcAreaTriangle
+IMPORT:base(Real), height(Real)
+EXPORT:area(Real)
+Assertion:Calculate area of triangle
+Algorithm:
+   area := base/2 * height
+
+SUB MODULE splitAndOutput
+IMPORT: area (Real), shape (String)
+EXPORT: None
+Assertion: Splits area into meter squared, centimeter squared, milimeter squared
+Algorithm:
+   meter := (Convert to Integer)(area) DIV 10000
+   cent := (Convert to Integer)(area) MOD 10000
+   mili := area - (Convert to Integer)(area)
+   mili := (Convert to Real)((Convert to Integer)(mili * 10000))/100
+   OUTPUT "Area of "+shape+" is "+meter+"m^2"+cent"m^2"+mili+"mm^2"
+
+SUB MODULE inputInteger
+IMPORT: type (String)
+EXPORT: num (Integer)
+Assertion: Asks user for integer input
+Algorithm:
+   TRY
+      OUPUT(type)
+      INPUT(num)
+   CATCH(InputMismatchException e)
+      Clear Input
+      OUTPUT("Input must be integer. Using default value of 25")
+      num := 25
+   END TRY
+
+SUB MODULE inputDouble
+IMPORT: type (String)
+EXPORT: num (Double)
+Assertion: Asks user for double input
+Algorithm: 
+   TRY
+      OUPUT(type)
+      INPUT(num)
+   CATCH(InputMismatchException e)
+      Clear Input
+      OUTPUT("Input must be real. Using default value of 25.0")
+      num := 25
+   END TRY
+
+SUB MODULE circleCalc
+IMPORT: None
+EXPORT: None
+Assertion:Calculates the area of a circle given diameter and outputs the area
+Algorithm:
+   diameter <-- inputInteger <-- "Enter the diameter as an integer in centimeters."
+   areaCircle <-- calcAreaCircle <-- diameter
+   splitAndOutput <-- areaCircle, "Circle"
+
+SUB MODULE circleRectangle
+IMPORT: None
+EXPORT: None
+Assertion:Calculates the area of a rectangle given length and width, and outputs area
+Algorithm:
+   width <-- inputDouble <-- "Enter the width as a real in centimeters."
+   length <-- inputDouble <-- "Enter the length as a real in centimeters."
+   areaRectangle <-- calcAreaRectangle <-- width, length
+   splitAndOutput <-- areaRectangle, "Rectangle"
+
+SUB MODULE circleTriangle
+IMPORT: None
+EXPORT: None
+Assertion:Calculates the area of a triangle given diameter and outputs the area
+Algorithm:
+   base <-- inputDouble <-- "Enter the base as a real in milimeters."
+   height <-- inputDouble <-- "Enter the height as a real in milimeters."
+   base := base / 10
+   height := height / 10
+   areaTriangle <-- calcAreaTriangle <-- base, height
+   splitAndOutput <-- areaTriangle, "Triangle"
+

@@ -1,0 +1,32 @@
+Matthew Loe
+Student ID:19452425
+
+Program: DivisionChecker.java
+Design Date: 22/03/2018
+Test Date:30/3/2018 
+
+Total Tests: 4
+Tests Passed:4
+Tests Failed:0
+
+Note: 
+
+TEST RESULTS:
+ID: Category:           Test Data:        Expected Behaviour:          Actual Behaviour:     Pass(P)/Fail(F)
+                        (num1,num2)
+_____________________________________________________________________________________________________________________
+1   divisible           (9, 3)             "Divisible"                   "Divisible"                P                             
+_____________________________________________________________________________________________________________________
+2   not divisible       (9, 2)             "Not Divisible"               "Not Divisible"            P                                
+_____________________________________________________________________________________________________________________
+3   Divide by 0         (9, 0)             "Not Divisible"                "Not divisible"           P                           
+_____________________________________________________________________________________________________________________
+4   Invalid input       (a, b)             "Invalid num one,              Used Default Value        P                                             
+                                             using default value 9"                                                      
+                                           "Invalid num two,                                                          
+                                             using default value 3"                                                  
+                                           "Divisible"                                                               
+______________________________________________________________________________________________________________________
+
+
+

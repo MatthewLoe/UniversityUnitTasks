@@ -1,0 +1,81 @@
+Matthew Loe
+Student ID: 19452425
+Date Created: 8/3/2018
+Date Last Modified: 14/3/2018
+
+Description
+Calculate area of shapes
+
+Main:
+
+  INPUT diameter(Integer)
+  INPUT width(Real)
+  INPUT length(Real)
+  INPUT base(Real)
+  INPUT height(Real)
+
+  areaCircle <--calcAreaCircle <--diameter
+  areaRectangle <-- calcAreaRectangle <-- width, <-- length
+  areaTriangle <-- calcAreaTriangle <-- base, <-- height
+
+  base = base / 10
+  height = height / 10
+
+  meter <-- splitMeter <-- areaCircle
+  cent <-- splitCent <-- areaCircle
+  mili <-- splitMili <-- areaCircle
+  OUTPUT "Area of cirlce is "+meter+"m^2"+cent"m^2"+mili+"m^2"
+  meter <-- splitMeter <-- areaRectangle
+  cent <-- splitCent <-- areaRectangle
+  mili <-- splitMili <-- areaRectangle
+  OUTPUT "Area of rectangle is "+meter+"m^2"+cent"m^2"+mili+"m^2"
+  meter <-- splitMeter <-- areaTriangle
+  cent <-- splitCent <-- areaTriangle
+  mili <-- splitMili <-- areaTriangle
+  OUTPUT "Area of triangle is "+meter+"m^2"+cent"m^2"+mili+"m^2"
+
+END Main
+
+SUB MODULE calcAreaCircle
+IMPORT: diameter(Integer)
+EXPORT: area(Real)
+  Assertion:Calculate area of circle
+  Algorithm:
+  radius :=(Convert to Real)(diameter)/2
+  area := pi * (radius POW 2)
+
+SUB MODULE calcAreaRectangle
+IMPORT: width(Real), length(Real)
+EXPORT: area(Real)
+  Assertion:Calculate area of rectangle
+  Algorithm:
+  area := width * length
+
+SUB MODULE calcAreaTriangle
+IMPORT:base(Real), height(Real)
+EXPORT:area(Real)
+  Assertion:Calculate area of triangle
+  Algorithm:
+  area := base/2 * height
+
+SUB MODULE splitMeter
+IMPORT: area(Real)
+EXPORT: meter(Integer)
+  Assertion: Splits area into meter squared
+  Algorithm:
+  meter := (Convert to Integer)(area) DIV 10000
+
+SUB MODULE splitCent
+IMPORT:area(Real)
+EXPORT:cent(Integer)
+  Assertion: Splits area into centimeter squared
+  Algorithm:
+  cent := (Convert to Integer)(area) MOD 10000
+
+SUB MODULE splitMili
+IMPORT: area(Real)
+EXPORT: mili(Real)
+  Assertion: Splits area into milimeter squared
+  Algorithm:
+  mili := area - (Convert to Integer)(area)
+  mili := mili * 100

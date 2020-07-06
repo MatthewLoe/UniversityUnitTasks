@@ -1,0 +1,78 @@
+Matthew Loe
+Student ID:19452425
+Date Created:27/3/2018
+Date Last Modified: 29/3/2018
+
+Main
+
+   divisionChecker <-- None
+
+END Main
+
+SUB MODULE divisionChecker
+I: None
+E: None
+Assertion: Checks if entered numbers are divisible by each other
+Algorithm:
+   num1 <-- inputInteger <-- message
+   num2 <-- inputInteger <-- message
+   IF num1 == 0 OR num2 == 0 THEN
+      result := False 
+   ELSE
+      largest <-- checkLarger <-- num1, <-- num2
+      IF largest THEN
+         hold := num1
+         num1 := num2
+         num2 := hold
+      END IF
+      result <-- checkDivisible <-- num1, <-- num2
+   END IF
+
+   extractOutput <-- result, <-- num1, <-- num2
+
+SUB MODULE inputInteger
+I: messege (String)
+E: num (Integer)
+Assertion: Gets user input
+Algorithm:
+   TRY
+      OUPUT(message)
+      INPUT(num)
+   CATCH(InputMismatchException e)
+      Clear Input
+      OUTPUT("Input must be integer. Using default value of 5.")
+      num := 5
+   END TRY
+
+SUB MODULE checkLarger
+I: num1 (Integer), num2 (Integer)
+E: result (Boolean)
+Assertion: Checks that num1 is larger than num2
+Algorithm:
+   IF (num1 > num2) THEN
+      result := True
+   ELSE
+      result := False
+   END IF
+
+SUB MODULE checkDivisible
+I: num1 (Integer), num2 (Integer)
+E: result (Boolean)
+Assertion: Checks if num1 is divisible by num2
+Algorithm:
+   IF (num1%num2 == 0) THEN
+      result := True
+   ELSE
+      result := False
+   END IF
+
+SUB MODULE extractOutput
+I: result (Boolean), num1 (Integer), num2 (Integer)
+E: None
+Assertion: Outputs the results
+Algorithm:
+   IF result THEN
+      OUTPUT(num1+" is divisible by "+num2)
+   ELSE
+      OUTPUT(num1+" is not divisible by "+num2)
+   END IF

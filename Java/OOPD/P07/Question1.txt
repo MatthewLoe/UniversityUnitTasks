@@ -1,0 +1,28 @@
+Matthew Loe
+Student ID:19452425
+Date Created: 19/4/2018
+Date Last Modified: 19/4/2018
+
+1. Break is used in the loop, this is bad programming, as it forces an exit of the loop. 
+This can also prevent the programming from find additional index places that contain the desired. 
+
+2. Continue is used in the if-else structure, this is bad programming and redundant as the code
+will flow on and do the next iteration, and continue simply tells the machine to do that.
+
+3. Use of index variable outside of the for loop, which is bad programming.
+
+4. The loop will try to find an index location outside of the array, this is bad programming and
+will cause the program to have a runtime error.
+
+6. The program will still output a value even if it doesn't find a value.
+
+Sub Module questionOne
+I: array, value
+E: None
+Assertion:Finds index locations of desired value
+Algorithm:
+   index = 0
+   WHILE NOT(array.length == (index - 1))
+      IF array[index] equals value
+         OUTPUT("Found value at index "+index)
+      index = index + 1

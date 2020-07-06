@@ -1,0 +1,280 @@
+Matthew Loe
+Student ID: 19452425
+Date Created: 8/3/2018
+Date Last Modified: 12/3/2018
+
+Description
+Calculates area of shapes
+
+Main
+
+   runShapeCalculator <-- None   
+
+END Main
+
+SUB MODULE runShapeCaclculator
+IMPORT: None
+EXPORT: None
+Assertion: Runs the program shapecalculator
+Algorithm:
+   loopExit = true
+   DO
+      selected =: chooseShape <-- 1, 5
+      CASE selected
+         1:
+            diameter =: inputInteger <-- "Enter the diameter as an integer in centimeters.", 0
+            circleCalc <-- diameter
+         2:
+            width =: inputDouble <-- "Enter the width as a real in centimeters.", 0
+            length =: inputDouble <-- "Enter the length as a real in centimeters.", 0
+            rectangleCalc <-- width, length
+         3:
+            base =: inputDouble <-- "Enter the base as a real in milimeters.", 0.0
+            height =: inputDouble <-- "Enter the height as a real in milimeters.", 0.0
+            triangleCalc <-- base, height
+         4:
+            fileName =: inputString <-- "Enter file name."
+            numLines =: getNumLines <-- fileName
+            arrayShape[numLines] (Array of Character)
+            arrayDimension[numLines][2] (Array of Real)
+            readFile <-- fileName, arrayShape, arrayDimension
+            index = 0
+            arrayArea[numLines] (Array of Real)
+            DO
+               CASE arrayShape[index] OF
+                  case 'C'
+                     arrayArea[index] =: calcAreaCircle <-- Integer.parseInt(arrayDimension[index][0])
+                  case 'R'
+                     arrayArea[index] =: calcAreaRectangle <-- arrayDimension[index][0], arrayDimension[index][1]
+                  case 'T'
+                     arrayArea[index] =:calcAreaTriangle <-- arrayDimension[index][0], arrayDimension[index][1]
+               END CASE
+               index = index +1
+            WHILE index < numLines
+            END DO-WHILE
+            writeFile <-- arrayShape, arrayArea, numLines
+         5:
+            loopExit =: false
+            OUTPUT("Exiting program.")
+      END CASE 
+    WHILE loopExit
+    END DO WHILE
+
+SUB MODULE chooseShape
+IMPORT: min (Integer), max (Integer)
+EXPORT: selected(Integer)
+Assertion: Asks user to select a shape
+Algorithm:
+   selected =: 0
+   DO
+      TRY
+         OUTPUT(error) 
+         OUTPUT("Available options Circle(1), Rectangle(2), Triangle(3), Input from File(4) and Exit(5).")
+         OUTPUT("Please enter the corresponding integer for your chosen option.")
+         INPUT(selected)
+         error =: "Input not in valid range."
+      CATCH(InputMismatchException e)
+         Clear Input
+         error =: "Input must be integer."
+      END TRY
+   WHILE ((selected < min) OR (selected > max))
+   END DO WHILE
+
+SUB MODULE calcAreaCircle
+IMPORT: diameter(Integer)
+EXPORT: area(Real)
+Assertion:Calculate area of circle
+Algorithm:
+   radius :=(Convert to Real)(diameter)/2
+   area := pi * (radius POW 2)
+
+SUB MODULE calcAreaRectangle
+IMPORT: width(Real), length(Real)
+EXPORT: area(Real)
+Assertion:Calculate area of rectangle
+Algorithm:
+   area := width * length
+
+SUB MODULE calcAreaTriangle
+IMPORT:base(Real), height(Real)
+EXPORT:area(Real)
+Assertion:Calculate area of triangle
+Algorithm:
+   area := base/2 * height
+
+SUB MODULE splitAndOutput
+IMPORT: area (Real), shape (String)
+EXPORT: None
+Assertion: Splits area into meter squared, centimeter squared, milimeter squared
+Algorithm:
+   meter := (Convert to Integer)(area) DIV 10000
+   cent := (Convert to Integer)(area) MOD 10000
+   mili := area - (Convert to Integer)(area)
+   mili := (Convert to Real)((Convert to Integer)(mili * 10000))/100
+   OUTPUT "Area of "+shape+" is "+meter+"m^2"+cent"m^2"+mili+"mm^2"
+
+SUB MODULE inputInteger
+IMPORT: type (String), min(Integer)
+EXPORT: num (Integer)
+Assertion: Asks user for integer input
+Algorithm:
+   num =: min
+   error =: ""
+
+   DO
+      TRY
+         OUTPUT(error)
+         OUTPUT(type)
+         INPUT(num)
+         error =: "Input not in valid range."
+      CATCH(InputMismatchException e)
+         Clear Input
+         error =: "Input must be integer."
+      END TRY
+   WHILE (num <= 0)
+   END DO WHILE
+
+SUB MODULE inputDouble
+IMPORT: type (String), min(Real)
+EXPORT: num (Real)
+Assertion: Asks user for double input
+Algorithm:
+   num =: min
+   error =: ""
+   
+   DO 
+      TRY
+         OUTPUT(error)
+         OUTPUT(type)
+         INPUT(num)
+         error =: "Input not in valid range."
+      CATCH(InputMismatchException e)
+         Clear Input
+         error =: "Input must be real."
+      END TRY
+   WHILE (num <= 0.0)
+   END DO WHILE
+
+SUB MODULE circleCalc
+IMPORT: diameter(Integer)
+EXPORT: None
+Assertion:Calculates the area of a circle given diameter and outputs the area
+Algorithm:
+   areaCircle =: calcAreaCircle <-- diameter
+   splitAndOutput <-- areaCircle, "Circle"
+
+SUB MODULE rectangleCalc
+IMPORT: width(Real), length(Real)
+EXPORT: None
+Assertion:Calculates the area of a rectangle given length and width, and outputs area
+Algorithm:
+   areaRectangle =: calcAreaRectangle <-- width, length
+   splitAndOutput <-- areaRectangle, "Rectangle"
+
+SUB MODULE triangleCalc
+IMPORT: None
+EXPORT: None
+Assertion:Calculates the area of a triangle given diameter and outputs the area
+Algorithm:
+   base := base / 10
+   height := height / 10
+   areaTriangle =: calcAreaTriangle <-- base, height
+   splitAndOutput <-- areaTriangle, "Triangle"
+
+Sub Module getNumLines
+I: fileName (String)
+E: num (Integer)
+Assertion: Get number of lines in file
+Algorithm:
+   file =: OPENFILE fileName
+   
+   IF file CAN'T BE OPENED THEN
+      FAIL (THROW EXCEPTION)
+   END IF
+   
+   num = 0
+   INPUT line FROM file
+   
+   WHILE (line NOT End of File)
+      num = num + 1
+      INPUT line FROM file
+   ENDWHILE
+
+   CLOSEFILE file
+
+Sub Module readFile
+I: fileName(String), arrayShape(Array of Character), arrayDimension(Array of Real)
+E: None 
+Assertion: Reads the file
+Algorithm:
+   file =: OPENFILE fileName
+   lineNum =: 0
+   INPUT line FROM file
+   
+   TRY
+      WHILE NOT(file = End of File)
+         text = processLine <-- line
+         arrayShape[lineNum] =: text[0].charAt(0)
+         IF (text[0] EQUALS "R" OR text[0] EQUALS "T") THEN
+            IF validDimension <-- Double.parseDouble(text[1]) AND validDimension <-- Double.parseDouble(text[2]) THEN
+               arrayDimension[lineNum][0] =: Double.parseDouble(text[1])
+               arrayDimension[lineNum][1] =: Double.parseDouble(text[2])
+            ELSE
+               FAIL - THROW Exception 
+         IF text[0] EQUALS "C" THEN
+            IF validDimension <-- Double.parseDouble(text[1]) THEN 
+               arrayDimension[lineNum][0] =: Double.parseDouble(text[1])
+            ELSE
+               FAIL - THROW Exception
+         ELSE
+            FAIL - THROW Exception
+         lineNum =: lineNum + 1
+         INPUT line FROM file
+      END WHILE
+      CLOSEFILE file
+
+   CATCH(IllegalArgumentException)
+      OUTPUT("Invalid Shape or dimensions.")
+      CLOSEFILE file   
+   END TRY-CATCH
+
+Sub Module processLine
+I: line(String)
+E: text(Array of String)
+Assertion: Process line of file
+Algorithm:
+   text =: SPLIT line ON ","
+
+Sub Module inputString
+I:prompt(String)
+E:text(String)
+Assertion:Gets user input of String
+Algorithm:
+   OUTPUT(prompt)
+   INPUT(text)
+
+Sub Module writeFile
+I:arrayShape(Array of String), arrayArea (Array of Real), numLines (Integer)
+E:None
+Assertion: Writes calculated output to a file
+Algorithm:
+   file =: OPENFILE "output.csv"
+   FOR count = 0 TO count < numLines CHANGEBY 1
+      WRITE arrayShape[count] +","+arrayArea TO file
+   END FOR
+   
+   CLOSE file
+
+Sub Module validDimension
+I:num (Real)
+E:valid(Boolean)
+Assertion:Validates the data
+Algorithm:
+   IF num > 0.0 THEN
+      valid =: True
+   ELSE
+      valid =: False
+
+
+
+

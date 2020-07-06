@@ -1,0 +1,134 @@
+Matthew Loe
+Student ID:19452425
+Date Created: 3/5/2018
+Date Last Modified: 4/5/2018
+
+Main
+   loopExit = True
+   numLines = 0
+   studentName (Array of String)
+   studentMarks (Array of Real)
+   fileName =: inputString <-- "Enter file name or 'Exit' to leave."
+   numLines =: getNumLines <-- fileName
+   IF NOT(numLines EQUALS 0) THEN
+      readFile <-- fileName, studentName, studentMarks
+      DO
+      choice =: inputChar <-- "Select an option: (D)isplay mark, (E)xit"
+         CASE choice OF
+            case 'D':
+               indexArray[numLines+1] (Array of Integer)
+               findStudent <-- studentName
+               IF NOT(indexArray[LENGTH indexArray - 1]) THEN
+                   displayMark <-- studentName, studentMarks, indexArray
+               ELSE
+                   OUTPUT("Invalid name/does not exist.")
+               END IF
+            case 'E':
+               loopExit = False
+            default:
+               OUTPUT("Invalid Option.")
+         END CASE
+      WHILE loopExit
+      END WHILE
+   ELSE
+      OUTPUT("Invalid file.\nExiting program.")
+
+End Main
+
+Sub Module inputString
+I: prompt(String)
+E: text (String)
+Assertion: Gets string user input
+Algorithm:
+   OUTPUT(prompt)
+   INPUT(text)
+
+Sub Module inputChar
+I: prompt(String)
+E: character(Character)
+Assertion:Gets character user input
+Algorithm:
+   TRY
+      OUTPUT(error)
+      OUTPUT(prompt)
+      INPUT(character)
+   CATCH(InputMismatch e)
+      Clear Input
+      OUTPUT"Invalid data type."
+
+Sub Module getNumLines
+I: fileName (String)
+E: num (Integer)
+Assertion: Get number of lines in file
+Algorithm:
+   file =: OPENFILE fileName
+   
+   IF file CAN'T BE OPENED THEN
+      FAIL (THROW EXCEPTION)
+   END IF
+   
+   num = 0
+   INPUT line FROM file
+   
+   WHILE (line NOT End of File)
+      num = num + 1
+      INPUT line FROM file
+   ENDWHILE
+
+   CLOSEFILE file
+
+Sub Module readFile
+I: fileName(String), studentName(Array of String), studentMarks(Array of Real)
+E: None 
+Assertion: Reads the file
+Algorithm:
+   file =: OPENFILE fileName
+   lineNum =: 0
+   INPUT line FROM file
+   
+   WHILE NOT(file = End of File)
+      text = processLine <-- line
+      studentName[lineNum] =: text[0]
+      studentMarks[lineNum] =: Double.parseDouble(text[1])
+      lineNum =: lineNum + 1
+      INPUT line FROM file
+   END WHILE
+   
+   CLOSEFILE file
+
+Sub Module processLine
+I: line(String)
+E: text(Array of String)
+Assertion: Process line of file
+Algorithm:
+   text =: SPLIT line ON ","
+
+Sub Module findName
+I:studentName(Array of String)
+E:None
+Assertion:Finds student name, returning if it exists
+Algorithm:
+   name =: inputString <-- "Enter a name."
+   count = 0
+   index = 0
+   DO
+      IF (studentName[index] EQUALS name) THEN
+         indexArray[count] = index
+         count = count + 1
+      END IF
+      index = index + 1   
+   WHILE (index < LENGTH OF studentName)
+   END WHILE
+   indexArray[LENGTH indexArray - 1] = count
+
+Sub Module displayMark
+I: studentName(Array of String), studentMarks(Array of Real), indexArray(Array of Integer)
+E: None
+Assertion: Displays the mark
+Algorithm:
+   FOR count = 0 TO count < indexArray[LENGTH indexArray - 1] CHANGEBY 1
+      OUTPUT(studentName[indexArray[count]])
+      OUTPUT(studentMarks[indexArray[count]])
+
+
+

@@ -1,0 +1,33 @@
+Matthew Loe
+Student ID: 19452425
+Date Created: 14/3/2018
+
+Program: CalcAreaShape.java
+Design Date: 8/3/2018
+Test Date: 14/3/2018
+
+Total Tests: 3
+Tests Passed:3
+Tests Failed:0
+
+Note: D = circle diameter
+      L,W = Rectangle Length, Width
+      B, H = Triangle Base, Height
+
+TEST RESULTS:
+ID: Category:           Test Data:                  Expected Result:            Actual Result:              Pass(P)/Fail(F)
+____________________________________________________________________________________________________________________________
+1   Valid               D = 98                      0m^2, 7542cm^2, 96.39mm^2   0m^2, 7542cm^2, 96.39mm^2                                            
+                        L = 1138.68, W = 184.50     21m^2, 86cm^2, 46mm^2       21m^2, 86cm^2, 46mm^2              P                             
+                        B = 6493.2, H = 2564.5       8m^2, 3259cm^2, 5.7mm^2    8m^2, 3259cm^2, 5.699999mm^2                                             
+____________________________________________________________________________________________________________________________
+2   Integer Division    D = 115                     1m^2, 386cm^2, 89.07mm^2    1m^2, 386cm^2, 89.071mm^2                                            
+                        Circle N/A                                                                                 P
+                        Triangle N/A
+____________________________________________________________________________________________________________________________
+3   invalid             D = -242                     4m^2, 5996cm^2, 5.8mm^2    4m^2, 5996cm^2, 5.804mm^2                                            
+    (negative values)   L = 1139.68, W = 0           0m^2, 0cm^2, 0mm^          0m^2, 0cm^2, 0mm^2                 P                 
+                        Triangle N/A 
+____________________________________________________________________________________________________________________________
+
+
